@@ -29,7 +29,7 @@ class Menu:
                     MENU_OPTIONS[i],
                     20,
                     COLOR_GRAY,
-                    ((WINDOW_WIDTH / 2), 200 + 25 * i)
+                    ((WINDOW_WIDTH / 2), 170 + 25 * i)
                 )
 
             pygame.display.flip()
