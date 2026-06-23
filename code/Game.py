@@ -12,7 +12,18 @@ class Game:
         print("Setup end")
 
     def run(self):
+        menu = Menu(self.window)
+
         while True:
-            menu = Menu(self.window)
-            menu.run()
-            pass
+            menu_return = menu.run()
+
+            match menu_return:
+                case 'NEW GAME':
+                    print("Iniciando novo jogo...")
+                case 'SCORE':
+                    print("Exibindo pontuações...")
+                case 'HELP':
+                    print("Exibindo ajuda...")
+                case 'QUIT':
+                    pygame.quit()
+                    quit()
