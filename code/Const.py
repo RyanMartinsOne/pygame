@@ -1,2 +1,16 @@
+# C
+COLOR_BLACK = (0,0,0)
+COLOR_GRAY = (70,70,70)
+COLOR_WHITE = (255,255,255)
+
+# M
+MENU_OPTIONS = (
+    'NEW GAME',
+    'SCORE',
+    'HELP',
+    'QUIT'
+)
+
+# W
 WINDOW_WIDTH = 576
 WINDOW_HEIGHT = 324
