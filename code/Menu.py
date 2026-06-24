@@ -8,10 +8,10 @@ from code.Const import WINDOW_WIDTH, COLOR_BLACK, MENU_OPTIONS, COLOR_GRAY, COLO
 class Menu:
     def __init__(self, window):
         self.window = window
-        self.surf = pygame.image.load("assets/images/orig.png")
+        self.surf = pygame.image.load("./assets/images/orig.png")
         self.rect = self.surf.get_rect(left=0, top=0)
 
-        pygame.mixer.music.load("assets/sounds/music/time_for_adventure.mp3")
+        pygame.mixer.music.load("./assets/sounds/music/time_for_adventure.mp3")
         pygame.mixer.music.play(-1)
 
     def run(self):
