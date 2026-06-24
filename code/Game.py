@@ -1,5 +1,6 @@
 import pygame
 
+from code.Level import Level
 from code.Const import WINDOW_WIDTH, WINDOW_HEIGHT
 from code.Menu import Menu
 
@@ -19,7 +20,8 @@ class Game:
 
             match menu_return:
                 case 'NEW GAME':
-                    print("Iniciando novo jogo...")
+                    level = Level(self.window, 'Level01')
+                    level_return = Level.run()
                 case 'SCORE':
                     print("Exibindo pontuações...")
                 case 'HELP':
