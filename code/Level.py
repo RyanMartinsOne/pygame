@@ -1,19 +1,64 @@
 import pygame
+from pygame import Surface, Rect
+from pygame.font import Font
 
+from code.Const import COLOR_BLACK, WINDOW_WIDTH
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 
 
 class Level:
-    def __init__(self, window, name):
+    def __init__(self, window, name, coins):
         self.window = window
         self.name = name
-        self.entity_list: list [Entity] = []
-        self.entity_list.extend(EntityFactory.get_entity('Level01Bg'))
+        self.entity_list: list[Entity] = []
+        # background
+        self.entity_list.extend(EntityFactory.get_entity(f"{self.name}Bg"))
+
+        # player
+        self.entity_list.append(EntityFactory.get_entity(
+            "Player",
+            position=(10, 240),
+        ))
+
+        # enemy
+        self.entity_list.append(EntityFactory.get_entity(
+            "Enemy",
+            position=(449, 250),
+        ))
+
+        self.coins = coins
 
     def run(self):
+        pygame.mixer.music.load(f"./assets/sounds/music/{self.name}.mp3")
+        pygame.mixer.music.play(-1)
+        clock = pygame.time.Clock()
+
         while True:
+            # Delta time para manter animação num ritmo constante
+            dt = clock.tick(60) / 1000
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+
             for entity in self.entity_list:
-                self.window.blit(source=entity.surf, dest=entity.rect)
+                if hasattr(entity, "update"):
+                    entity.update(dt)
+
                 entity.move()
+                self.window.blit(source=entity.image, dest=entity.rect)
+
+            self.level_text(f"Moedas: {self.coins}", 14, COLOR_BLACK, (5, 9))
+            self.level_text(
+                f"fps: {clock.get_fps():.0f}", 14, COLOR_BLACK, (WINDOW_WIDTH - 77, 5)
+            )
+
             pygame.display.flip()
+
+    def level_text(self, text: str, text_size: int, text_color: tuple, text_position: tuple):
+        text_font: Font = pygame.font.Font("assets/fonts/PixelOperator8.ttf", text_size)
+        text_surface: Surface = text_font.render(text, True, text_color).convert_alpha()
+        text_rect: Rect = text_surface.get_rect(left=text_position[0], top=text_position[1])
+        self.window.blit(source=text_surface, dest=text_rect)
