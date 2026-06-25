@@ -6,11 +6,13 @@ class EntityFactory:
     @staticmethod
     def get_entity(entity_name: str, position: tuple=(0,0)):
         match entity_name:
-            case 'Level01Bg':
-                list_bg =[]
-                for i in range (5):
-                    list_bg.append(Background(f'Level01Bg{i}', position))
-                    list_bg.append(Background(f'Level01Bg{i}',(WINDOW_WIDTH, 0)))
+            case "Level01Bg":
+                list_bg = [
+                    Background(f"Level01Bg{i}", pos)
+                    for i in range(5)
+                    # Gera 2 Backgrounds, um no início e outro no fim da tela
+                    for pos in [position, (WINDOW_WIDTH, 0)]
+                ]
                 return list_bg
         return None
 
