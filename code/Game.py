@@ -11,6 +11,7 @@ class Game:
         pygame.init()
         self.window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         print("Setup end")
+        self.coins = 0
 
     def run(self):
         menu = Menu(self.window)
@@ -20,7 +21,7 @@ class Game:
 
             match menu_return:
                 case 'NEW GAME':
-                    level = Level(self.window, 'Level01')
+                    level = Level(self.window, 'Level01', self.coins)
                     level_return = level.run()
                 case 'SCORE':
                     print("Exibindo pontuações...")
