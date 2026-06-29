@@ -1,3 +1,5 @@
+import random
+
 from code.Background import Background
 from code.Const import WINDOW_WIDTH
 from code.Enemy import Enemy
@@ -12,7 +14,7 @@ class EntityFactory:
                 list_bg = [
                     Background(f"Level01Bg{i}", pos)
                     for i in range(5)
-                    # Gera 2 Backgrounds, um no início e outro no fim da tela
+                    # Create 2 Backgrounds, one at the start and other in the end
                     for pos in [position, (WINDOW_WIDTH, 0)]
                 ]
                 return list_bg
@@ -21,7 +23,7 @@ class EntityFactory:
                 list_bg = [
                     Background(f"Level02Bg{i}", pos)
                     for i in range(4)
-                    # Gera 2 Backgrounds, um no início e outro no fim da tela
+                    # Create 2 Backgrounds, one at the start and other in the end
                     for pos in [position, (WINDOW_WIDTH, 0)]
                 ]
                 return list_bg
@@ -30,15 +32,15 @@ class EntityFactory:
                 list_bg = [
                     Background(f"Level03Bg{i}", pos)
                     for i in range(4)
-                    # Gera 2 Backgrounds, um no início e outro no fim da tela
+                    # Create 2 Backgrounds, one at the start and other in the end
                     for pos in [position, (WINDOW_WIDTH, 0)]
                 ]
                 return list_bg
 
             case "Player":
-                return Player("Player", position)
+                return Player("Player", (30, 240))
 
             case "Enemy":
-                return Enemy("Enemy", position)
+                return Enemy("Enemy", (WINDOW_WIDTH + random.randint(80, 200), 250))
 
         return None
