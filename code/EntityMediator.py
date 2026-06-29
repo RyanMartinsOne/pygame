@@ -15,7 +15,7 @@ class EntityMediator:
 
 
     @staticmethod
-    def verify_colisions(entity_list: list[Entity]):
+    def verify_collisions(entity_list: list[Entity]):
         player = [p for p in entity_list if isinstance(p, Player)]
         enemies = [e for e in entity_list if isinstance(e, Enemy)]
 
@@ -26,5 +26,5 @@ class EntityMediator:
                     offset = (e.rect.left - p.rect.left,
                               e.rect.top - p.rect.top)
                     if p.mask.overlap(e.mask, offset):
-                        pygame.mixer.music.load('./assets/effects/effects/hurt.mp3')
+                        pygame.mixer.music.load('./assets/sounds/effects/hurt.mp3')
                         pygame.mixer.music.play()
