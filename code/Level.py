@@ -19,16 +19,10 @@ class Level:
         self.entity_list.extend(EntityFactory.get_entity(f"{self.name}Bg"))
 
         # player
-        self.entity_list.append(EntityFactory.get_entity(
-            "Player",
-            position=(10, 240),
-        ))
+        self.entity_list.append(EntityFactory.get_entity("Player"))
 
         # enemy
-        self.entity_list.append(EntityFactory.get_entity(
-            "Enemy",
-            position=(449, 250),
-        ))
+        self.entity_list.append(EntityFactory.get_entity("Enemy"))
 
         self.coins = coins
 
