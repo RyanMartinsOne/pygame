@@ -2,7 +2,7 @@ import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import COLOR_BLACK, WINDOW_WIDTH
+from code.Const import COLOR_BLACK, WINDOW_WIDTH, EVENT_ENEMY
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 
@@ -12,6 +12,8 @@ class Level:
         self.window = window
         self.name = name
         self.entity_list: list[Entity] = []
+
+        pygame.time.set_timer(EVENT_ENEMY, 2500)
 
         self.font_hud = pygame.font.Font("assets/fonts/PixelOperator8.ttf", 14)
 
@@ -39,6 +41,8 @@ class Level:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
+                if event.type == EVENT_ENEMY:
+                    self.entity_list.append(EntityFactory.get_entity('Enemy'))
 
             for entity in self.entity_list:
                 if hasattr(entity, "update"):
@@ -51,6 +55,7 @@ class Level:
             self.level_text(
                 f"fps: {clock.get_fps():.0f}", COLOR_BLACK, (WINDOW_WIDTH - 77, 5)
             )
+            self.level_text(f"entidades: {len(self.entity_list)}", COLOR_BLACK, (WINDOW_WIDTH - 150, 50))
 
             pygame.display.flip()
 
