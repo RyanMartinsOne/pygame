@@ -12,6 +12,9 @@ class Level:
         self.window = window
         self.name = name
         self.entity_list: list[Entity] = []
+
+        self.font_hud = pygame.font.Font("assets/fonts/PixelOperator8.ttf", 14)
+
         # background
         self.entity_list.extend(EntityFactory.get_entity(f"{self.name}Bg"))
 
@@ -50,15 +53,14 @@ class Level:
                 entity.move()
                 self.window.blit(source=entity.image, dest=entity.rect)
 
-            self.level_text(f"Moedas: {self.coins}", 14, COLOR_BLACK, (5, 9))
+            self.level_text(f"Moedas: {self.coins}", COLOR_BLACK, (5, 9))
             self.level_text(
-                f"fps: {clock.get_fps():.0f}", 14, COLOR_BLACK, (WINDOW_WIDTH - 77, 5)
+                f"fps: {clock.get_fps():.0f}", COLOR_BLACK, (WINDOW_WIDTH - 77, 5)
             )
 
             pygame.display.flip()
 
-    def level_text(self, text: str, text_size: int, text_color: tuple, text_position: tuple):
-        text_font: Font = pygame.font.Font("assets/fonts/PixelOperator8.ttf", text_size)
-        text_surface: Surface = text_font.render(text, True, text_color).convert_alpha()
-        text_rect: Rect = text_surface.get_rect(left=text_position[0], top=text_position[1])
+    def level_text(self, text: str, text_color: tuple, text_position: tuple):
+        text_surface = self.font_hud.render(text, True, text_color).convert_alpha()
+        text_rect = text_surface.get_rect(left=text_position[0], top=text_position[1])
         self.window.blit(source=text_surface, dest=text_rect)
