@@ -1,10 +1,9 @@
 import pygame
-from pygame import Surface, Rect
-from pygame.font import Font
 
 from code.Const import COLOR_BLACK, WINDOW_WIDTH, EVENT_ENEMY
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
+from code.EntityMediator import EntityMediator
 
 
 class Level:
@@ -49,6 +48,7 @@ class Level:
                     entity.update(dt)
 
                 entity.move()
+                EntityMediator.verify_collisions(self.entity_list)
                 self.window.blit(source=entity.image, dest=entity.rect)
 
             self.level_text(f"Moedas: {self.coins}", COLOR_BLACK, (5, 9))
