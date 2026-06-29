@@ -1,8 +1,8 @@
-from code.Const import ENEMY_FRAME_RECTS
+from random import randint
+
+from code.Const import ENEMY_FRAME_RECTS, WINDOW_WIDTH, ENTITY_SPEED, ENEMY_SCALE
 from code.Entity import Entity
 from code.SpriteAnimator import SpriteAnimator
-
-ENEMY_SCALE = 2
 
 
 class Enemy(Entity):
@@ -14,9 +14,7 @@ class Enemy(Entity):
 
     def update(self, dt: float):
         self.animator.update(dt)
-        topleft = self.rect.topleft
-        self.image = self.animator.get_frame()
-        self.rect = self.image.get_rect(topleft=topleft)
+        self.set_image(self.animator.get_frame(), self.rect.topleft)
 
     def move(self):
-        pass
+        self.rect.centerx -= ENTITY_SPEED[self.name]
