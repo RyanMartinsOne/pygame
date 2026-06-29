@@ -1,6 +1,4 @@
-from random import randint
-
-from code.Const import ENEMY_FRAME_RECTS, WINDOW_WIDTH, ENTITY_SPEED, ENEMY_SCALE
+from code.Const import ENEMY_FRAME_RECTS, ENTITY_SPEED, ENEMY_SCALE
 from code.Entity import Entity
 from code.SpriteAnimator import SpriteAnimator
 
