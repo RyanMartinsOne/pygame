@@ -1,6 +1,7 @@
 import random
 
 from code.Background import Background
+from code.Coin import Coin
 from code.Const import WINDOW_WIDTH
 from code.Enemy import Enemy
 from code.Player import Player
@@ -42,5 +43,8 @@ class EntityFactory:
 
             case "Enemy":
                 return Enemy("Enemy", (WINDOW_WIDTH + random.randint(80, 200), 250))
+
+            case "Coin":
+                return Coin("Coin", (WINDOW_WIDTH, 270))
 
         return None

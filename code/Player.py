@@ -5,6 +5,9 @@ from code.SpriteAnimator import SpriteAnimator
 
 
 class Player(Entity):
+
+    sound_jump = None
+
     def __init__(self, name: str, position: tuple):
         super().__init__(name, position)
 
@@ -36,11 +39,19 @@ class Player(Entity):
         self.animator.update(dt)
         self.set_image(self.animator.get_frame(), self.rect.topleft)
 
+    @staticmethod
+    def __load_sounds():
+        if Player.sound_jump is None:
+            Player.sound_jump = pygame.mixer.Sound('./assets/sounds/effects/jump.wav')
+
     def move(self):
         pressed_keys = pygame.key.get_pressed()
+        Player.__load_sounds()
+
 
         # Start jump
         if any(pressed_keys[k] for k in JUMP_KEYS) and not self.is_jumping:
+            Player.sound_jump.play()
             self.vel_y = JUMP_FORCE
             self.is_jumping = True
             self.jump_animator.current_frame = 0

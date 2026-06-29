@@ -6,6 +6,17 @@ COLOR_GRAY = (70,50,70)
 COLOR_WHITE = (255,255,255)
 COLOR_RED = (255,0,0)
 
+COIN_FRAME_RECTS = [
+    pygame.Rect( 0, 0, 14, 15),
+    pygame.Rect( 16, 0, 14, 15),
+    pygame.Rect( 34, 0, 9, 15),
+    pygame.Rect( 53, 0, 4, 15),
+    pygame.Rect( 67, 0, 9, 15),
+    pygame.Rect( 80, 0, 14, 15),
+]
+
+COIN_SCALE = 3
+
 #D
 DEFAULT_FRAME_SPEED = 0.1
 
@@ -29,6 +40,7 @@ ENTITY_SPEED = {
     'Level03Bg3': 3,
     'Player': 2,
     'Player_Jump': -5,
+    'Coin'      : 2,
 }
 
 ENEMY_FRAME_RECTS = [
@@ -45,6 +57,7 @@ ENEMY_FRAME_RECTS = [
 ENEMY_SCALE = 2
 
 EVENT_ENEMY = pygame.USEREVENT + 1
+EVENT_COIN  = pygame.USEREVENT + 2
 
 #G
 GRAVITY = 700

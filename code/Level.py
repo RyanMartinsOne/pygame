@@ -1,6 +1,6 @@
 import pygame
 
-from code.Const import COLOR_BLACK, WINDOW_WIDTH, EVENT_ENEMY
+from code.Const import COLOR_BLACK, WINDOW_WIDTH, EVENT_ENEMY, EVENT_COIN
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 from code.EntityMediator import EntityMediator
@@ -13,6 +13,7 @@ class Level:
         self.entity_list: list[Entity] = []
 
         pygame.time.set_timer(EVENT_ENEMY, 2500)
+        pygame.time.set_timer(EVENT_COIN, 10000)
 
         self.font_hud = pygame.font.Font("assets/fonts/PixelOperator8.ttf", 14)
 
@@ -42,14 +43,17 @@ class Level:
                     quit()
                 if event.type == EVENT_ENEMY:
                     self.entity_list.append(EntityFactory.get_entity('Enemy'))
+                if event.type == EVENT_COIN:
+                    self.entity_list.append(EntityFactory.get_entity('Coin'))
 
             for entity in self.entity_list:
                 if hasattr(entity, "update"):
                     entity.update(dt)
 
                 entity.move()
-                EntityMediator.verify_collisions(self.entity_list)
                 self.window.blit(source=entity.image, dest=entity.rect)
+
+            self.coins += EntityMediator.verify_collisions(self.entity_list)
 
             self.level_text(f"Moedas: {self.coins}", COLOR_BLACK, (5, 9))
             self.level_text(
