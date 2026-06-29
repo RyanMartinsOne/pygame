@@ -6,8 +6,14 @@ COLOR_GRAY = (70,50,70)
 COLOR_WHITE = (255,255,255)
 COLOR_RED = (255,0,0)
 
+#D
+DEFAULT_FRAME_SPEED = 0.1
+
+
 # E
 ENTITY_SPEED = {
+    'Enemy'     : 2,
+    'GRAVITY'   : 0.15,
     'Level01Bg0': 0,
     'Level01Bg1': 1,
     'Level01Bg2': 2,
@@ -21,6 +27,8 @@ ENTITY_SPEED = {
     'Level03Bg1': 1,
     'Level03Bg2': 2,
     'Level03Bg3': 3,
+    'Player': 2,
+    'Player_Jump': -5,
 }
 
 ENEMY_FRAME_RECTS = [
@@ -33,6 +41,17 @@ ENEMY_FRAME_RECTS = [
     pygame.Rect( 480, 0, 30, 35),
     pygame.Rect( 560, 0, 30, 35),
 ]
+
+ENEMY_SCALE = 2
+
+EVENT_ENEMY = pygame.USEREVENT + 1
+
+#G
+GRAVITY = 700
+
+#J
+JUMP_FORCE = -450
+JUMP_KEYS = (pygame.K_SPACE, pygame.K_UP)
 
 # M
 MENU_OPTIONS = (
@@ -51,6 +70,16 @@ PLAYER_FRAME_RECTS = [
     pygame.Rect(55, 0, 14, 27),
     pygame.Rect(70, 0, 12, 27),
 ]
+
+PLAYER_JUMP_FRAME_RECTS = [
+    pygame.Rect( 0,  4, 12, 26),
+    pygame.Rect( 31, 8, 14, 22),
+    pygame.Rect( 64, 0, 13, 26),
+    pygame.Rect( 96, 0, 12, 28),
+    pygame.Rect(127, 8, 14, 22),
+]
+
+PLAYER_SCALE = 3
 
 # W
 WINDOW_WIDTH = 576
